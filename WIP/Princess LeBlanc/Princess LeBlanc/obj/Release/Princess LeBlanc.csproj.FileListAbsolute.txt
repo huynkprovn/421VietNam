@@ -1,0 +1,2 @@
+C:\Users\Windows 8.1X64 M1\Desktop\L-Assemblies-master\WIP\Princess LeBlanc\Princess LeBlanc\obj\Release\Princess LeBlanc.csprojResolveAssemblyReference.cache
+C:\LSharp\Ass421\WIP\Princess LeBlanc\Princess LeBlanc\obj\Release\Princess LeBlanc.csprojResolveAssemblyReference.cache

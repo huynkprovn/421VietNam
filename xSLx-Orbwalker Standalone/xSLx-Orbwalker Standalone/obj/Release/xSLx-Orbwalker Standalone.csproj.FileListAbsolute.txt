@@ -1,0 +1,2 @@
+C:\LSharp\HuyNKLocal\xSLx-Orbwalker Standalone\xSLx-Orbwalker Standalone\obj\Release\xSLx-Orbwalker Standalone.csprojResolveAssemblyReference.cache
+C:\LSharp\Ass421\xSLx-Orbwalker Standalone\xSLx-Orbwalker Standalone\obj\Release\xSLx-Orbwalker Standalone.csprojResolveAssemblyReference.cache
