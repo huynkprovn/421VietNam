@@ -311,9 +311,9 @@ namespace LeeSinSharp
             }
             return true;
         }
-        public static void castR()
+        public static void CastR()
         {
-             var target = LeagueSharp.Common.TargetSelector.GetTarget(375, LeagueSharp.Common.TargetSelector.DamageType.Physical);
+             var target = TargetSelector.GetTarget(375, TargetSelector.DamageType.Physical);
             if (target == null || !R.IsReady() ||  !LeeSinSharp.Config.Item("UseRCombo").GetValue<bool>())
                 return;
             R.Cast(target);
@@ -328,7 +328,7 @@ namespace LeeSinSharp
             }
         }
       
-        public static void castRKill()
+        public static void CastRKill()
         {
             if (!LeeSinSharp.Config.Item("UseRcombo").GetValue<bool>()) 
                 return;
@@ -509,6 +509,22 @@ namespace LeeSinSharp
                     if (Q.IsReady())
                     {
                         Q.Cast(target);
+                    }
+                }
+                if (Player.Distance(target.ServerPosition) <= E.Range &&
+                    (Player.GetSpellDamage(target, SpellSlot.E)) > target.Health)
+                {
+                    if (E.IsReady())
+                    {
+                        E.Cast(target);
+                    }
+                }
+                if (Player.Distance(target.ServerPosition) <= R.Range &&
+                    (Player.GetSpellDamage(target, SpellSlot.R)) > target.Health)
+                {
+                    if (R.IsReady())
+                    {
+                       R.Cast(target);
                     }
                 }
             }

@@ -57,16 +57,13 @@
       <HintPath>C:\LSharp\\System\Igniter.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp">
-      <HintPath>..\..\System\LeagueSharp.dll</HintPath>
+      <HintPath>C:\LSharp\\System\LeagueSharp.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.AppDomainManager">
       <HintPath>C:\LSharp\\System\LeagueSharp.AppDomainManager.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.Common">
-      <HintPath>..\..\System\LeagueSharp.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="LX-Orbwalker">
-      <HintPath>..\..\System\LX-Orbwalker.dll</HintPath>
+      <HintPath>C:\LSharp\\System\LeagueSharp.Common.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
       <HintPath>C:\LSharp\\System\SharpDX.dll</HintPath>

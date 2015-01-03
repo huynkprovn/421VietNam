@@ -19,33 +19,36 @@ namespace HuyNKSeries
         //summoners
         public static SpellSlot IgniteSlot = ObjectManager.Player.GetSpellSlot("SummonerDot");
         //HuyNkItems
-        public static LeagueSharp.Common.Items.Item DFG = Utility.Map.GetMap()._MapType == Utility.Map.MapType.TwistedTreeline ? new LeagueSharp.Common.Items.Item(3188, 750) : new LeagueSharp.Common.Items.Item(3128, 750);
-        public static LeagueSharp.Common.Items.Item Botrk = new LeagueSharp.Common.Items.Item(3153, 450);
-        public static LeagueSharp.Common.Items.Item Bilge = new LeagueSharp.Common.Items.Item(3144, 450);
-        public static LeagueSharp.Common.Items.Item Hex = new LeagueSharp.Common.Items.Item(3146, 700);
+        public static Items.Item DFG = Utility.Map.GetMap()._MapType == Utility.Map.MapType.TwistedTreeline ? new LeagueSharp.Common.Items.Item(3188, 750) : new LeagueSharp.Common.Items.Item(3128, 750);
+        public static Items.Item Botrk = new Items.Item(3153, 450);
+        public static Items.Item Bilge = new Items.Item(3144, 450);
+        public static Items.Item Hex = new Items.Item(3146, 700);
         public static int lastPlaced;
         public Vector3 lastWardPos;
         public static void Use_DFG(Obj_AI_Hero target)
         {
             if (target != null && Player.Distance(target) < 750 && LeagueSharp.Common.Items.CanUseItem(DFG.Id))
-                LeagueSharp.Common.Items.UseItem(DFG.Id, target);
+                Items.UseItem(DFG.Id, target);
         }
 
         public static void Use_Hex(Obj_AI_Hero target)
         {
             if (target != null && Player.Distance(target) < 450 && LeagueSharp.Common.Items.CanUseItem(Hex.Id))
-                LeagueSharp.Common.Items.UseItem(Hex.Id, target);
+                Items.UseItem(Hex.Id, target);
         }
         public static  void Use_Botrk(Obj_AI_Hero target)
         {
             if (target != null && Player.Distance(target) < 450 && LeagueSharp.Common.Items.CanUseItem(Botrk.Id))
-                LeagueSharp.Common.Items.UseItem(Botrk.Id, target);
+            {
+                Items.UseItem(Botrk.Id, target);
+                
+            }
         }
 
         public static void Use_Bilge(Obj_AI_Hero target)
         {
-            if (target != null && Bilge.IsReady() && Player.Distance(target) < 450 && LeagueSharp.Common.Items.CanUseItem(Bilge.Id))
-                LeagueSharp.Common.Items.UseItem(Bilge.Id, target);
+            if (target != null && Bilge.IsReady() && Player.Distance(target) < 450 && Items.CanUseItem(Bilge.Id))
+                Items.UseItem(Bilge.Id, target);
         }
         public static void Use_Ignite(Obj_AI_Hero target)
         {
@@ -114,8 +117,8 @@ namespace HuyNKSeries
                 ObjectManager.Get<Obj_AI_Hero>().Count(
                     hero => hero.IsAlly && !hero.IsDead && hero.IsValid && hero.Distance(pos) <= range);
         }
-        /*
-        public bool manaCheck()
+        
+       /*public bool manaCheck()
         {
             int totalMana = qMana[Q.Level] + wMana[W.Level] + eMana[E.Level] + rMana[R.Level];
             var checkMana = menu.Item("mana").GetValue<bool>();
@@ -239,9 +242,9 @@ namespace HuyNKSeries
             return new object[3] { pointSegment, pointLine, isOnSegment };
         }
 
-        public static void CastBasicSkillShot(Spell spell, float range, LeagueSharp.Common.TargetSelector.DamageType type, HitChance hitChance)
+        public static void CastBasicSkillShot(Spell spell, float range, TargetSelector.DamageType type, HitChance hitChance)
         {
-            var target = LeagueSharp.Common.TargetSelector.GetTarget(range, type);
+            var target = TargetSelector.GetTarget(range, type);
 
             if (target == null || !spell.IsReady())
                 return;
@@ -255,12 +258,12 @@ namespace HuyNKSeries
         {
             var focusSelected = Menus.menu.Item("selected").GetValue<bool>();
 
-            if (LeagueSharp.Common.TargetSelector.GetSelectedTarget() != null)
-                if (focusSelected && LeagueSharp.Common.TargetSelector.GetSelectedTarget().Distance(Player.ServerPosition) < range + 100 && LeagueSharp.Common.TargetSelector.GetSelectedTarget().Type == GameObjectType.obj_AI_Hero)
-                {
+            if (TargetSelector.GetSelectedTarget() != null)
+                if (focusSelected &&
+                    TargetSelector.GetSelectedTarget().Distance(Player.ServerPosition) < range + 100 &&
+                    TargetSelector.GetSelectedTarget().Type == GameObjectType.obj_AI_Hero)
                     //Game.PrintChat("Focusing: " + LeagueSharp.Common.TargetSelector.GetSelectedTarget().Name);
-                    return LeagueSharp.Common.TargetSelector.GetSelectedTarget();
-                }
+                    return TargetSelector.GetSelectedTarget();
             return null;
         }
 
@@ -312,7 +315,10 @@ namespace HuyNKSeries
         }
         public static bool packets()
         {
+            
+            
             return Menus.menu.Item("packet").GetValue<bool>();
+
         }
     }
 }

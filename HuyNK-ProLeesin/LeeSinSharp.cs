@@ -47,54 +47,64 @@ namespace LeeSinSharp
             if (ObjectManager.Player.ChampionName != CharName) return;
             map = new Map();
 
-            Game.PrintChat("HuyNK- Pro LeeSin");
+            Game.PrintChat("【HuyNK】- Pro LeeSin");
 
             try
             {
 
-                Config = new Menu("LeeSin", "HuyNK-Pro LeeSin", true);
-                var targetSelectorMenu = new Menu("Target Selector", "Target Selector");
+                Config = new Menu("LeeSin", "【HuyNK】-Pro LeeSin", true);
+                var targetSelectorMenu = new Menu("Chọn đối tượng", "Target Selector");
                 LeagueSharp.Common.TargetSelector.AddToMenu(targetSelectorMenu);
                 Config.AddSubMenu(targetSelectorMenu);
 
-                Config.AddSubMenu(new Menu("Orbwalker", "Orbwalker"));
+                Config.AddSubMenu(new Menu("Thả diều", "Orbwalker"));
                 LeeSin.orbwalker = new Orbwalking.Orbwalker(Config.SubMenu("Orbwalker"));
-                Config.AddSubMenu(new Menu("Combo", "Combo"));
-                Config.SubMenu("Combo").AddItem(new MenuItem("UseQCombo", "Dung Q")).SetValue(true);
-                Config.SubMenu("Combo").AddItem(new MenuItem("UseECombo", "Dung E")).SetValue(true);
-                Config.SubMenu("Combo").AddItem(new MenuItem("UseRCombo", "Dung R")).SetValue(true);
-                Config.SubMenu("Combo").AddItem(new MenuItem("ActiveCombo", "Combo And Insec!").SetValue(new KeyBind(32, KeyBindType.Press)));
+                Config.AddSubMenu(new Menu("Đánh Nhau", "Combo"));
+                Config.SubMenu("Combo").AddItem(new MenuItem("UseQCombo", "Dùng Q")).SetValue(true);
+                Config.SubMenu("Combo").AddItem(new MenuItem("UseECombo", "Dùng E")).SetValue(true);
+                Config.SubMenu("Combo").AddItem(new MenuItem("UseRCombo", "Dùng R")).SetValue(true);
+                Config.SubMenu("Combo").AddItem(new MenuItem("ActiveCombo", "Combo và Insec!").SetValue(new KeyBind(32, KeyBindType.Press)));
                 Config.SubMenu("Combo").AddItem(new MenuItem("ActiveCombo1", "QERQE!").SetValue((new KeyBind("S".ToCharArray()[0], KeyBindType.Press, false))));
 
                 //Misc
-                Config.AddSubMenu(new Menu("Misc", "Misc"));
-                Config.SubMenu("Misc").AddItem(new MenuItem("KhienRadun", "Khien Radun").SetValue(true));
+                Config.AddSubMenu(new Menu("Linh Tinh", "Misc"));
+                Config.SubMenu("Misc").AddItem(new MenuItem("KhienRadun", "Khiên Radun").SetValue(true));
                 Config.SubMenu("Misc").AddItem(new MenuItem("AutoTiamat", "Tiamax").SetValue(true));
-                Config.SubMenu("Misc").AddItem(new MenuItem("Automangxa", "Mang xa").SetValue(true));
-                Config.SubMenu("Misc").AddItem(new MenuItem("AutoBOTRK", "Vo Danh").SetValue(true));
-                Config.SubMenu("Misc").AddItem(new MenuItem("AutoYoumuu", "Kiem Ma Yomun").SetValue(true));
-                Config.SubMenu("Misc").AddItem(new MenuItem("AutoIgnite", "Thieu Dot").SetValue(true));
+                Config.SubMenu("Misc").AddItem(new MenuItem("Automangxa", "Mãng xà").SetValue(true));
+                Config.SubMenu("Misc").AddItem(new MenuItem("AutoBOTRK", "Vô danh").SetValue(true));
+                Config.SubMenu("Misc").AddItem(new MenuItem("AutoYoumuu", "Kiếm ma Yomun").SetValue(true));
+                Config.SubMenu("Misc").AddItem(new MenuItem("AutoIgnite", "Thiêu đốt").SetValue(true));
 
-                Config.AddSubMenu(new Menu("Harass", "Harass"));
-                Config.SubMenu("Harass").AddItem(new MenuItem("ActiveHarass", "Ria Mau!").SetValue((new KeyBind("C".ToCharArray()[0], KeyBindType.Press, false))));
+                Config.AddSubMenu(new Menu("Rỉa máu", "Harass"));
+                Config.SubMenu("Harass").AddItem(new MenuItem("ActiveHarass", "Rỉa máu!").SetValue((new KeyBind("V".ToCharArray()[0], KeyBindType.Press, false))));
 
                 Config.AddSubMenu(new Menu("Insec", "Insec"));
                 Config.SubMenu("Insec").AddItem(new MenuItem("ActiveInsec", "Insec!").SetValue((new KeyBind("T".ToCharArray()[0], KeyBindType.Press, false))));
 
-                Config.AddSubMenu(new Menu("KillSteal", "KillSteal"));
+                Config.AddSubMenu(new Menu("KS bằng R", "KillSteal"));
                 Config.SubMenu("KillSteal").AddItem(new MenuItem("UseR", "KS R")).SetValue(true);
 
-                Config.AddSubMenu(new Menu("WardJump", "WardJump"));
-                Config.SubMenu("WardJump").AddItem(new MenuItem("ActiveWard", "Luot W").SetValue((new KeyBind("G".ToCharArray()[0], KeyBindType.Press, false))));
+                Config.AddSubMenu(new Menu("Cắm mắt lướt", "WardJump"));
+                Config.SubMenu("WardJump").AddItem(new MenuItem("ActiveWard", "Cắm mắt lướt").SetValue((new KeyBind("G".ToCharArray()[0], KeyBindType.Press, false))));
 
-                Config.AddSubMenu(new Menu("Drawings", "Drawings"));
-                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawQ", "Vong Q")).SetValue(true);
-                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawE", "Vong E")).SetValue(true);
-                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawW", "Vong W")).SetValue(true);
-                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawR", "Vong R")).SetValue(true);
-                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawInsec", "Huong Insec")).SetValue(true);
-                Config.SubMenu("Drawings").AddItem(new MenuItem("CircleQuality", "Vong Tron").SetValue(new Slider(100, 100, 10)));
-                Config.SubMenu("Drawings").AddItem(new MenuItem("CircleThickness", "Do day").SetValue(new Slider(1, 10, 1)));
+                Config.AddSubMenu(new Menu("Hiễn thị", "Drawings"));
+                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawQ", "Vòng Q")).SetValue(true);
+                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawE", "Vòng E")).SetValue(true);
+                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawW", "Vòng W")).SetValue(true);
+                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawR", "Vòng R")).SetValue(true);
+                Config.SubMenu("Drawings").AddItem(new MenuItem("DrawInsec", "Hướng Insec")).SetValue(true);
+                Config.SubMenu("Drawings").AddItem(new MenuItem("CircleQuality", "Vòng tròn").SetValue(new Slider(100, 100, 10)));
+                Config.SubMenu("Drawings").AddItem(new MenuItem("CircleThickness", "Độ đậm").SetValue(new Slider(1, 10, 1)));
+                MenuItem drawComboDamageMenu = new MenuItem("Draw_ComboDamage", "Thanh máu sau khi Combo ").SetValue(true);
+                Config.AddItem(drawComboDamageMenu);
+                Utility.HpBarDamageIndicator.DamageToUnit = GetComboDamage;
+                Utility.HpBarDamageIndicator.Enabled = drawComboDamageMenu.GetValue<bool>();
+                drawComboDamageMenu.ValueChanged +=
+                    delegate(object sender, OnValueChangeEventArgs eventArgs)
+                    {
+                        Utility.HpBarDamageIndicator.Enabled = eventArgs.GetNewValue<bool>();
+                    };
+
                 Config.AddToMainMenu();
                 Drawing.OnDraw += onDraw;
                 Game.OnGameUpdate += OnGameUpdate;
@@ -111,11 +121,30 @@ namespace LeeSinSharp
 
         }
 
+        private static float GetComboDamage(Obj_AI_Hero hero)
+        {
+            Obj_AI_Hero player = ObjectManager.Player;;
+            // Auto attack damage
+            double damage = player.GetAutoAttackDamage(target);
+
+            // Q damage
+            if (LeeSin.Q.IsReady())
+                damage += player.GetSpellDamage(target, SpellSlot.Q);
+
+            // E stack damage
+            if (LeeSin.E.IsReady())
+                damage += player.GetSpellDamage(target, SpellSlot.E);
+            if (LeeSin.R.IsReady())
+                damage += player.GetSpellDamage(target, SpellSlot.R);
+            return (float)damage;
+
+        }
+
         private static void OnGameUpdate(EventArgs args)
         {
             LeeSin.loaidraw();
             LeeSin.CastR_kill();
-            target = LeagueSharp.Common.TargetSelector.GetTarget(1500, LeagueSharp.Common.TargetSelector.DamageType.Physical);
+            target = TargetSelector.GetTarget(1500, LeagueSharp.Common.TargetSelector.DamageType.Physical);
             LeeSin.checkLock(target);
             LeeSin.orbwalker.SetAttack(true);
             if (Config.Item("ActiveWard").GetValue<KeyBind>().Active)

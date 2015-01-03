@@ -97,7 +97,13 @@ namespace HuyNKSeries
 
         public virtual void Game_OnSendPacket(GamePacketEventArgs args)
         {
-            //for champ use
+            // Avoid stupic Q casts while jumping in mid air!
+            if (args.PacketData[0] == Packet.C2S.Cast.Header && Menus.player.IsDashing())
+            {
+                // Don't process the packet if we are jumping!
+                if (Packet.C2S.Cast.Decoded(args.PacketData).Slot == SpellSlot.Q)
+                    args.Process = false;
+            }
         }
     }
 }

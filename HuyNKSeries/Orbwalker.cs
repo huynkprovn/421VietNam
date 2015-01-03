@@ -1,16 +1,17 @@
-﻿
-using LeagueSharp;
+﻿using LeagueSharp;
 using LeagueSharp.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using SharpDX;
 using Color = System.Drawing.Color;
+
 namespace HuyNKSeries
 {
     // ReSharper disable once InconsistentNaming
     public class HuyNKOrbwalker
     {
+
         private static readonly string[] AttackResets = { "dariusnoxiantacticsonh", "fioraflurry", "garenq", "hecarimrapidslash", "jaxempowertwo", "jaycehypercharge", "leonashieldofdaybreak", "monkeykingdoubleattack", "mordekaisermaceofspades", "nasusq", "nautiluspiercinggaze", "netherblade", "parley", "poppydevastatingblow", "powerfist", "renektonpreexecute", "rengarq", "shyvanadoubleattack", "sivirw", "takedown", "talonnoxiandiplomacy", "trundletrollsmash", "vaynetumble", "vie", "volibearq", "xenzhaocombotarget", "yorickspectral" };
         private static readonly string[] NoAttacks = { "jarvanivcataclysmattack", "monkeykingdoubleattack", "shyvanadoubleattack", "shyvanadoubleattackdragon", "zyragraspingplantattack", "zyragraspingplantattack2", "zyragraspingplantattackfire", "zyragraspingplantattack2fire" };
         private static readonly string[] Attacks = { "caitlynheadshotmissile", "frostarrow", "garenslash2", "kennenmegaproc", "lucianpassiveattack", "masteryidoublestrike", "quinnwenhanced", "renektonexecute", "renektonsuperexecute", "rengarnewpassivebuffdash", "trundleq", "xenzhaothrust", "viktorqbuff", "xenzhaothrust2", "xenzhaothrust3" };
@@ -62,73 +63,73 @@ namespace HuyNKSeries
 
             Menu = menu;
 
-            var menuDrawing = new Menu("Drawing", "orb_Draw");
-            menuDrawing.AddItem(new MenuItem("orb_Draw_AARange", "AA Circle").SetValue(new Circle(true, Color.FloralWhite)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_AARange_Enemy", "AA Circle Enemy").SetValue(new Circle(true, Color.Pink)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_Holdzone", "Holdzone").SetValue(new Circle(true, Color.FloralWhite)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_MinionHPBar", "Minion HPBar").SetValue(new Circle(true, Color.Black)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_MinionHPBar_thickness", "^ HPBar Thickness").SetValue(new Slider(1, 1, 3)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_hitbox", "Show HitBoxes").SetValue(new Circle(true, Color.FloralWhite)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_Lasthit", "Minion Lasthit").SetValue(new Circle(true, Color.Lime)));
-            menuDrawing.AddItem(new MenuItem("orb_Draw_nearKill", "Minion nearKill").SetValue(new Circle(true, Color.Gold)));
+            var menuDrawing = new Menu("Hiển Thị", "orb_Draw");
+            menuDrawing.AddItem(new MenuItem("orb_Draw_AARange", "Tầm đánh thường").SetValue(new Circle(true, Color.FloralWhite)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_AARange_Enemy", "Tầm đánh thường địch").SetValue(new Circle(true, Color.Pink)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_Holdzone", "Hold Zone").SetValue(new Circle(true, Color.FloralWhite)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_MinionHPBar", "Thanh máu lính").SetValue(new Circle(true, Color.Black)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_MinionHPBar_thickness", "Độ đậm vòng tròn").SetValue(new Slider(1, 1, 3)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_hitbox", "Vòng tròn lính").SetValue(new Circle(true, Color.FloralWhite)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_Lasthit", "Giết").SetValue(new Circle(true, Color.Red)));
+            menuDrawing.AddItem(new MenuItem("orb_Draw_nearKill", "Gần last hit").SetValue(new Circle(true, Color.Chartreuse)));
             menu.AddSubMenu(menuDrawing);
 
-            var menuMisc = new Menu("Misc", "orb_Misc");
-            menuMisc.AddItem(new MenuItem("orb_Misc_Holdzone", "Hold Position").SetValue(new Slider(50, 100, 0)));
-            menuMisc.AddItem(new MenuItem("orb_Misc_Farmdelay", "Farm Delay").SetValue(new Slider(0, 200, 0)));
-            menuMisc.AddItem(new MenuItem("orb_Misc_ExtraWindUp", "Extra Winduptime").SetValue(new Slider(80, 200, 0)));
-            menuMisc.AddItem(new MenuItem("orb_Misc_AutoWindUp", "Autoset Windup").SetValue(false));
-            menuMisc.AddItem(new MenuItem("orb_Misc_Priority_Unit", "Priority Unit").SetValue(new StringList(new[] { "Minion", "Hero" })));
-            menuMisc.AddItem(new MenuItem("orb_Misc_Humanizer", "Humanizer Delay").SetValue(new Slider(80, 200, 15)));
-            menuMisc.AddItem(new MenuItem("orb_Misc_AllMovementDisabled", "Disable All Movement").SetValue(false));
-            menuMisc.AddItem(new MenuItem("orb_Misc_AllAttackDisabled", "Disable All Attacks").SetValue(false));
+            var menuMisc = new Menu("Hỗ trợ thêm", "orb_Misc");
+            menuMisc.AddItem(new MenuItem("orb_Misc_Holdzone", "Giữ vị trí").SetValue(new Slider(50, 100, 0)));
+            menuMisc.AddItem(new MenuItem("orb_Misc_Farmdelay", "Độ trễ farm").SetValue(new Slider(0, 200, 0)));
+            menuMisc.AddItem(new MenuItem("orb_Misc_ExtraWindUp", "Độ trễ dùng chiêu").SetValue(new Slider(80, 200, 0)));
+            menuMisc.AddItem(new MenuItem("orb_Misc_AutoWindUp", "Tự động").SetValue(false));
+            menuMisc.AddItem(new MenuItem("orb_Misc_Priority_Unit", "Ưu tiên").SetValue(new StringList(new[] { "Lính", "Tướng" })));
+            menuMisc.AddItem(new MenuItem("orb_Misc_Humanizer", "Tạm hoãn").SetValue(new Slider(80, 200, 15)));
+            menuMisc.AddItem(new MenuItem("orb_Misc_AllMovementDisabled", "Tắt di chuyển").SetValue(false));
+            menuMisc.AddItem(new MenuItem("orb_Misc_AllAttackDisabled", "Không dánh nhau").SetValue(false));
 
             menu.AddSubMenu(menuMisc);
 
-            var menuMelee = new Menu("Melee", "orb_Melee");
-            menuMelee.AddItem(new MenuItem("orb_Melee_Prediction", "Movement Prediction").SetValue(false));
+            var menuMelee = new Menu("Chạy", "orb_Melee");
+            menuMelee.AddItem(new MenuItem("orb_Melee_Prediction", "Kích hoạt phán đoán").SetValue(false));
             menu.AddSubMenu(menuMelee);
 
-            var menuModes = new Menu("Orbwalk Mode", "orb_Modes");
+            var menuModes = new Menu("Đánh nhau", "orb_Modes");
             {
-                var modeCombo = new Menu("Combo", "orb_Modes_Combo");
-                modeCombo.AddItem(new MenuItem("Combo_Key", "Key").SetValue(new KeyBind(32, KeyBindType.Press)));
-                modeCombo.AddItem(new MenuItem("Combo_move", "Movement").SetValue(true));
-                modeCombo.AddItem(new MenuItem("Combo_attack", "Attack").SetValue(true));
+                var modeCombo = new Menu("Đánh nhau", "orb_Modes_Combo");
+                modeCombo.AddItem(new MenuItem("Combo_Key", "Phím đánh nhau").SetValue(new KeyBind(32, KeyBindType.Press)));
+                modeCombo.AddItem(new MenuItem("Combo_move", "Di chuyển").SetValue(true));
+                modeCombo.AddItem(new MenuItem("Combo_attack", "Đánh").SetValue(true));
                 menuModes.AddSubMenu(modeCombo);
 
-                var modeHarass = new Menu("Harass", "orb_Modes_Harass");
-                modeHarass.AddItem(new MenuItem("Harass_Key", "Key").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
-                modeHarass.AddItem(new MenuItem("Harass_move", "Movement").SetValue(true));
-                modeHarass.AddItem(new MenuItem("Harass_attack", "Attack").SetValue(true));
-                modeHarass.AddItem(new MenuItem("Harass_Lasthit", "Lasthit Minions").SetValue(true));
+                var modeHarass = new Menu("Rỉa máu", "orb_Modes_Harass");
+                modeHarass.AddItem(new MenuItem("Harass_Key", "Phím rỉa máu").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
+                modeHarass.AddItem(new MenuItem("Harass_move", "Di chuyển").SetValue(true));
+                modeHarass.AddItem(new MenuItem("Harass_attack", "Đánh nhau").SetValue(true));
+                modeHarass.AddItem(new MenuItem("Harass_Lasthit", "Ưu tiên lasthit").SetValue(true));
                 menuModes.AddSubMenu(modeHarass);
 
-                var modeLaneClear = new Menu("LaneClear", "orb_Modes_LaneClear");
-                modeLaneClear.AddItem(new MenuItem("LaneClear_Key", "Key").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
-                modeLaneClear.AddItem(new MenuItem("LaneClear_move", "Movement").SetValue(true));
-                modeLaneClear.AddItem(new MenuItem("LaneClear_attack", "Attack").SetValue(true));
+                var modeLaneClear = new Menu("Dọn lính đẩy lane", "orb_Modes_LaneClear");
+                modeLaneClear.AddItem(new MenuItem("LaneClear_Key", "Phím dọn lính").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
+                modeLaneClear.AddItem(new MenuItem("LaneClear_move", "Di chuyển").SetValue(true));
+                modeLaneClear.AddItem(new MenuItem("LaneClear_attack", "Đánh").SetValue(true));
                 menuModes.AddSubMenu(modeLaneClear);
 
-                var modeLaneFreeze = new Menu("LaneFreeze", "orb_Modes_LaneFreeze");
-                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_Key", "Key").SetValue(new KeyBind("Z".ToCharArray()[0], KeyBindType.Press)));
-                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_move", "Movement").SetValue(true));
-                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_attack", "Attack").SetValue(true));
+                var modeLaneFreeze = new Menu("Đóng băng", "orb_Modes_LaneFreeze");
+                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_Key", "phím đóng băng").SetValue(new KeyBind("Z".ToCharArray()[0], KeyBindType.Press)));
+                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_move", "Di chuyển").SetValue(true));
+                modeLaneFreeze.AddItem(new MenuItem("LaneFreeze_attack", "Đánh").SetValue(true));
                 menuModes.AddSubMenu(modeLaneFreeze);
 
-                var modeLasthit = new Menu("LastHit", "orb_Modes_LastHit");
-                modeLasthit.AddItem(new MenuItem("LastHit_Key", "Key").SetValue(new KeyBind("X".ToCharArray()[0], KeyBindType.Press)));
-                modeLasthit.AddItem(new MenuItem("LastHit_move", "Movement").SetValue(true));
-                modeLasthit.AddItem(new MenuItem("LastHit_attack", "Attack").SetValue(true));
+                var modeLasthit = new Menu("Last hit", "orb_Modes_LastHit");
+                modeLasthit.AddItem(new MenuItem("LastHit_Key", "Phím lasthit").SetValue(new KeyBind("X".ToCharArray()[0], KeyBindType.Press)));
+                modeLasthit.AddItem(new MenuItem("LastHit_move", "Di chuyển").SetValue(true));
+                modeLasthit.AddItem(new MenuItem("LastHit_attack", "Đánh").SetValue(true));
                 menuModes.AddSubMenu(modeLasthit);
 
-                var modeFlee = new Menu("Flee", "orb_Modes_Flee");
-                modeFlee.AddItem(new MenuItem("Flee_Key", "Key").SetValue(new KeyBind("A".ToCharArray()[0], KeyBindType.Press)));
+                var modeFlee = new Menu("Chạy", "orb_Modes_Flee");
+                modeFlee.AddItem(new MenuItem("Flee_Key", "Phím chạy").SetValue(new KeyBind("A".ToCharArray()[0], KeyBindType.Press)));
                 menuModes.AddSubMenu(modeFlee);
             }
             menu.AddSubMenu(menuModes);
-            menu.AddItem(new MenuItem("xSLx_info", "Copyright by xSLx"));
-            menu.AddItem(new MenuItem("xSLx_info2", "Credits: xSLx & Esk0r"));
+            menu.AddItem(new MenuItem("xSLx_info", "Edit by HuyNK"));
+            menu.AddItem(new MenuItem("xSLx_info2", "Credit: xSLx & Esk0r"));
 
             Drawing.OnDraw += OnDraw;
             Game.OnGameUpdate += OnUpdate;

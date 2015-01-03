@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using LeagueSharp;
 using LeagueSharp.Common;
-using LX_Orbwalker;
+
 using SharpDX;
 
 using Color = System.Drawing.Color;
@@ -18,7 +18,7 @@ namespace HuyNKSeries
        public static  Orbwalking.Orbwalker Orbwalker;
        
         public static Menu menu;
-        public static Menu  orbwalkerMenu = new Menu("Orbwalker", "Orbwalker");
+        public static Menu  orbwalkerMenu = new Menu("Thả diều", "Orbwalker");
 
         public static Obj_AI_Hero player = ObjectManager.Player;
         public static string CHAMP_NAME = player.ChampionName ;
@@ -32,12 +32,12 @@ namespace HuyNKSeries
 
 
 
-            Menus.menu = new Menu("[HuyNK Series] " + Menus.CHAMP_NAME, "huynks" + Menus.CHAMP_NAME, true);
+            Menus.menu = new Menu("【HuyNK Series】 " + Menus.CHAMP_NAME, "huynks" + Menus.CHAMP_NAME, true);
 
             //Info
-            menu.AddSubMenu(new Menu("Info", "Info"));
-            menu.SubMenu("Info").AddItem(new MenuItem("[Author]", "[By HuyNK]"));
-            menu.SubMenu("Info").AddItem(new MenuItem("[Paypal]", "[Donate: khachuyvk@gmail.com]"));
+            menu.AddSubMenu(new Menu("Thông Tin", "Info"));
+            menu.SubMenu("Info").AddItem(new MenuItem("[Author]", "[Tác giả: HuyNK]"));
+            menu.SubMenu("Info").AddItem(new MenuItem("[Paypal]", "[Ngân Lượng: khachuyvk@gmail.com]"));
 
             //Target selector
             var targetSelectorMenu = new Menu("Chọn mục tiêu", "Target Selector");
@@ -51,8 +51,8 @@ namespace HuyNKSeries
            
            
             //Packet Menu
-            menu.AddSubMenu(new Menu("Packet Setting", "Packets"));
-            menu.SubMenu("Packets").AddItem(new MenuItem("packet", "Use Packets").SetValue(false));
+            menu.AddSubMenu(new Menu("Sử dụng Packets", "Packets"));
+            menu.SubMenu("Packets").AddItem(new MenuItem("packet", "Dùng Packets").SetValue(false));
          // Autolevel.Autolv();
             menu.AddToMainMenu();
 
@@ -65,7 +65,7 @@ namespace HuyNKSeries
             }
             catch
             {
-                Game.PrintChat("HuyNK Religion => {0} Not Support !", player.ChampionName);
+                Game.PrintChat("HuyNK Series => {0} Không hỗ trợ !", player.ChampionName);
             }
         }
 
