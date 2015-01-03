@@ -1,0 +1,15 @@
+C:\LSharp\Ass421\Ho tro\bin\Release\Hotro.exe.config
+C:\LSharp\Ass421\Ho tro\bin\Release\Hotro.exe
+C:\LSharp\Ass421\Ho tro\bin\Release\Hotro.pdb
+C:\LSharp\Ass421\Ho tro\bin\Release\LeagueSharp.Common.dll
+C:\LSharp\Ass421\Ho tro\bin\Release\LeagueSharp.dll
+C:\LSharp\Ass421\Ho tro\bin\Release\SharpDX.dll
+C:\LSharp\Ass421\Ho tro\bin\Release\SharpDX.Direct3D9.dll
+C:\LSharp\Ass421\Ho tro\bin\Release\SharpDX.Toolkit.dll
+C:\LSharp\Ass421\Ho tro\bin\Release\SharpDX.Toolkit.Graphics.dll
+C:\LSharp\Ass421\Ho tro\bin\Release\LeagueSharp.xml
+C:\LSharp\Ass421\Ho tro\bin\Release\SharpDX.Toolkit.xml
+C:\LSharp\Ass421\Ho tro\bin\Release\SharpDX.Toolkit.Graphics.xml
+C:\LSharp\Ass421\Ho tro\obj\Debug\HuyNK Tienich.csprojResolveAssemblyReference.cache
+C:\LSharp\Ass421\Ho tro\obj\Debug\Hotro.exe
+C:\LSharp\Ass421\Ho tro\obj\Debug\Hotro.pdb

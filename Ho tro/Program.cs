@@ -902,25 +902,25 @@ namespace JeonUtility
                     int interval = 20;
                     int i = 0;
 
-                    Drawing.DrawText(x, y, Color.Wheat, " 【HuyNK】 " + Player.ChampionName);
+                    Drawing.DrawText(x, y, Color.Wheat, " HuyNK " + Player.ChampionName);
                     i++;
 
 
                     if (smiteSlot != SpellSlot.Unknown)
                     {
-                        addText(y + (interval * i), (Jlib.getm_bool("AutoSmite") && smiteSlot != SpellSlot.Unknown), "Tự động trừng phạt");
+                        addText(y + (interval * i), (Jlib.getm_bool("AutoSmite") && smiteSlot != SpellSlot.Unknown), "TU DONG TRUNG PHAT");
                         i++;
                     }
 
                     if (igniteSlot != SpellSlot.Unknown)
                     {
-                        addText(y + (interval * i), (Jlib.getm_bool("AutoIgnite") && igniteSlot != SpellSlot.Unknown), "Tự độn thiêu đốt");
+                        addText(y + (interval * i), (Jlib.getm_bool("AutoIgnite") && igniteSlot != SpellSlot.Unknown), "TU DONG THIEU DOT");
                         i++;
                     }
 
                     if (jumpspell != null)
                     {
-                        addText(y + (interval * i), (Jlib.getm_bool("j2w_bool") && jumpspell != null), "Cắm mắt nhảy");
+                        addText(y + (interval * i), (Jlib.getm_bool("j2w_bool") && jumpspell != null), "CAM MAY NHẢY");
                         i++;
                     }
                     if (defslot != SpellSlot.Unknown)
