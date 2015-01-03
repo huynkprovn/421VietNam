@@ -62,9 +62,9 @@
     <Compile Include="Champion.cs" />
     <Compile Include="ChampionPriority.cs" />
     <Compile Include="Champ\Ezreal.cs" />
+    <Compile Include="Champ\Jinx.cs" />
     <Compile Include="Champ\Kalista.cs" />
     <Compile Include="Champ\Teemo.cs" />
-    <Compile Include="Champ\template.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Damages.cs" />
     <Compile Include="Extensions.cs" />

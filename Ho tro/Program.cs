@@ -244,7 +244,7 @@ namespace JeonUtility
             #region  menu for notifier
             baseMenu.AddSubMenu(menu_noti);
             menu_noti.AddItem(new MenuItem("noti_karthus", "Karthus Ultimate").SetValue(true));
-            menu_noti.AddItem(new MenuItem("noti_ez", "Ezreal Ultimate").SetValue(true));
+            menu_noti.AddItem(new MenuItem("noti_ez", "Ez,Jinx,Ashe Ultimate").SetValue(true));
             menu_noti.AddItem(new MenuItem("noti_cait", "CaitUltimate").SetValue(true));
             menu_noti.AddItem(new MenuItem("noti_shen", "ShenUltimate").SetValue(true));
             menu_noti.AddItem(new MenuItem("noti_shenhp", "Cảnh báo khi máu nạn nhân còn(%)").SetValue(new Slider(10, 0, 100)));
@@ -534,8 +534,8 @@ namespace JeonUtility
                     if (Jlib.getm_bool("j2w_info"))
                     {
                         Game.PrintChat("Tuong : " + Player.ChampionName);
-                        Game.PrintChat("Có thể? : " + canw2j);
-                        Game.PrintChat("Phép : " + jumpspell.Slot.ToString());
+                        Game.PrintChat("Co the^? : " + canw2j);
+                        Game.PrintChat("Phe'p : " + jumpspell.Slot.ToString());
                         Game.PrintChat("WardStack : " + Items.GetWardSlot().Stacks);
                         baseMenu.Item("j2w_info").SetValue<bool>(false);
                     }
@@ -804,7 +804,7 @@ namespace JeonUtility
                     }
                 }
                 //ez
-                if (Player.ChampionName == "Ezreal")
+                if (Player.ChampionName == "Ezreal" || Player.ChampionName == "Jinx" || Player.ChampionName == "Ashe")
                 {
                     if (Jlib.getm_bool("noti_ez") && Player.Spellbook.CanUseSpell(SpellSlot.R) == SpellState.Ready)
                     {
@@ -987,7 +987,7 @@ namespace JeonUtility
                     {
                         addText(y + (interval * i), (Jlib.getm_bool("noti_karthus")), "UltNotifiler");
                     }
-                    if (Player.ChampionName == "Ezreal")
+                    if (Player.ChampionName == "Ezreal" || Player.ChampionName == "Jinx" || Player.ChampionName == "Ashe")
                     {
                         addText(y + (interval * i), (Jlib.getm_bool("noti_ez")), "UltNotifiler");
                     }

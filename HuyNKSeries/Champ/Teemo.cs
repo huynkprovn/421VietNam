@@ -8,9 +8,9 @@ using LeagueSharp.Common;
 
 namespace HuyNKSeries.Champ
 {
-    class Teemo : Champion
+    class jinx : Champion
     {
-        public Teemo()
+        public jinx()
         {
             SetUpSpells();
             LoadMenu();
