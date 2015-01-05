@@ -1,0 +1,15 @@
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\HuyNKSeries.exe.config
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\HuyNKSeries.exe
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\HuyNKSeries.pdb
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\LeagueSharp.Common.dll
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\LeagueSharp.dll
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\SharpDX.Direct3D9.dll
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\SharpDX.dll
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\SharpDX.Toolkit.dll
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\SharpDX.Toolkit.Graphics.dll
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\LeagueSharp.xml
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\SharpDX.Toolkit.xml
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\bin\Release\SharpDX.Toolkit.Graphics.xml
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\obj\Debug\HuyNKSeries.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\obj\Debug\HuyNKSeries.exe
+C:\Users\Administrator\Documents\GitHub\HuyNK-Ass\HuyNKSeries\obj\Debug\HuyNKSeries.pdb

@@ -49,7 +49,7 @@ namespace HuyNKSeries.Champ
             key.AddItem(
                 new MenuItem("LaneClearActive", "Farm Lính").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
             key.AddItem(
-                new MenuItem("R_Nearest_Killable", "Ulti nếu gần chết !").SetValue(new KeyBind("R".ToCharArray()[0],
+                new MenuItem("R_Nearest_Killable", "Ulti nếu gần chết !").SetValue(new KeyBind("N".ToCharArray()[0],
                     KeyBindType.Press)));
             key.AddItem(
                 new MenuItem("Force_R", "Sử dụng R khi hồi chiu").SetValue(new KeyBind("I".ToCharArray()[0], KeyBindType.Press)));
@@ -70,7 +70,7 @@ namespace HuyNKSeries.Champ
             Menu wMenu = new Menu("Danh Sách Chiêu W", "WMenu");
 
             wMenu.AddItem(
-                new MenuItem("W_Max_Range", "W khi cách tầm").SetValue(new Slider(900, 500, 1050)));
+                new MenuItem("W_Max_Range", "W khi cách tầm").SetValue(new Slider(900, 500, 1500)));
             spellMenu.AddSubMenu(wMenu);
             //E 
 
@@ -111,9 +111,9 @@ namespace HuyNKSeries.Champ
             Menus.menu.AddSubMenu(combo);
 
             //harass
-            Menu harass = new Menu("Rỉa máu", "Harass");
+            Menu harass = new Menu("Tinh chỉnh khi farm", "Harass");
 
-            harass.AddItem(new MenuItem("UseQHarass", "Dùng Q").SetValue(true));
+            harass.AddItem(new MenuItem("UseQHarass", "Tự dùng Q").SetValue(true));
             harass.AddItem(new MenuItem("UseWHarass", "Dùng W").SetValue(true));
             // AddManaManagertoMenu(harass, "Harass", 30);
             //add to menu
@@ -205,6 +205,7 @@ namespace HuyNKSeries.Champ
 
             if (source == "Harass")
             {
+			var dungW = Menus.menu.Item("UseWHarass").GetValue<bool>();
                 if (E.IsReady())
                 {
                     List<Obj_AI_Hero> enemies = ObjectManager.Get<Obj_AI_Hero>().Where(x => x.IsEnemy && x.IsValidTarget()).ToList();
@@ -222,11 +223,12 @@ namespace HuyNKSeries.Champ
                 if (useQ)
                 CastQ();
                   //  HuyNkItems.CastBasicSkillShot(Q, Q.Range, TargetSelector.DamageType.Physical, HitChance.VeryHigh);
-                if (useW)
+                if (useW && dungW)
                     HuyNkItems.CastBasicSkillShot(W, W.Range, TargetSelector.DamageType.Magical, HitChance.Collision);
             }
             if (source == "Combo")
             {
+			 
                 var etarget = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Magical);
                 if (useE)
                     E.Cast(etarget,true,true);
@@ -270,9 +272,9 @@ namespace HuyNKSeries.Champ
 
             var useQ = Menus.menu.Item("UseQFarm").GetValue<bool>();
 
-            if (useQ && allMinionsQ.Count > 0)
+            if (useQ && allMinionsQ.Count > 5)
                 
-                Q.CastOnUnit(allMinionsQ[0], HuyNkItems.packets());
+                Q.Cast(allMinionsQ[0], HuyNkItems.packets());
             
         }
         private bool IsCannon()
@@ -281,21 +283,26 @@ namespace HuyNKSeries.Champ
         }
         private void CastQ()
         {
-           
-            if (!Q.IsReady()) return;
-
-            Obj_AI_Hero target = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Physical);
-            if (target == null) return;
-
-            float distance = Player.Position.Distance(target.Position);
-
-            if (IsCannon())
+            var dungQ = Menus.menu.Item("UseQHarass").GetValue<bool>();
+            if (!Q.IsReady())  return;
+            if (dungQ)
             {
-                if (distance <= 600) Q.Cast();
-            }
-            else
-            {
-                if (distance > 600) Q.Cast();
+                Obj_AI_Hero target = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Physical);
+                if (target == null)
+                    return;
+
+                float distance = Player.Position.Distance(target.Position);
+
+                if (IsCannon())
+                {
+                    if (distance <= 600)
+                        Q.Cast();
+                }
+                else
+                {
+                    if (distance > 600)
+                        Q.Cast();
+                }
             }
         }
 
@@ -325,7 +332,7 @@ namespace HuyNKSeries.Champ
 
         private void Cast_R()
         {
-            var target = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Magical);
+            var target = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Physical);
 
             if (R.IsReady() && target != null)
             {
@@ -338,7 +345,7 @@ namespace HuyNKSeries.Champ
 
                         if (Get_R_Dmg(target) >= target.Health && Player.Distance(target) > minRange)
                         {
-                            Game.PrintChat(" Giet nguoi nao  ");
+                            Game.PrintChat(" ULTI GIET NO NAO .. MUAHHHHHHHHHHHAAAAAAAAAAA  ");
                             R.Cast(target, HuyNkItems.packets());
                             return;
                         }
@@ -416,7 +423,7 @@ namespace HuyNKSeries.Champ
 
         public void AutoQ()
         {
-            var target = LeagueSharp.Common.TargetSelector.GetTarget(Q.Range, LeagueSharp.Common.TargetSelector.DamageType.Physical);
+            var target = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Physical);
 
             if (target != null)
             {
@@ -431,7 +438,7 @@ namespace HuyNKSeries.Champ
 
         public void ForceR()
         {
-            var target = LeagueSharp.Common.TargetSelector.GetTarget(R.Range, LeagueSharp.Common.TargetSelector.DamageType.Magical);
+            var target = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Physical);
             if (target != null && R.GetPrediction(target).Hitchance >= HitChance.High)
                 R.Cast(target, HuyNkItems.packets());
         }
@@ -508,14 +515,14 @@ namespace HuyNKSeries.Champ
                             .OrderBy(x => x.Health))
                 {
                     var health = unit.Health + unit.HPRegenRate * 3 + 25;
-                    if (Get_R_Dmg(unit) + 500 > health)
+                    if (Get_R_Dmg(unit) + 700 > health)
                     {
-                        Drawing.DrawText(Drawing.Width * 20f, Drawing.Height * 20f, Color.Red,
-                        " CO DANH NHAU CON 500 MAU , ULTI NO KO DAI CA ");
+                        Drawing.DrawText(Drawing.Width * 0.39f, Drawing.Height * 0.80f, Color.DarkOrange,
+                        " NO CON 700 MAU , ULTI NO KO DAI CA ");
                     }
                     if (Get_R_Dmg(unit) > health)
                     {
-                        Drawing.DrawText(Drawing.Width * 20f, Drawing.Height * 20f, Color.Red,
+                        Drawing.DrawText(Drawing.Width * 0.39f, Drawing.Height * 0.80f, Color.DarkOrange,
                         " ULTI LA CHET CHAC  ");
                         Vector2 wts = Drawing.WorldToScreen(unit.Position);
                         Drawing.DrawText(wts[0] - 20, wts[1], Color.Red, "MUC TIEU NE!!!");
