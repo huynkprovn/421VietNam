@@ -364,18 +364,18 @@ namespace LeeSinSharp
             if (!W.IsReady())
                 return;
             bool wardIs = false;
-            if (!inDistance(pos, Player.ServerPosition.To2D(), W.Range+15))
+            if (!inDistance(posStart, Player.ServerPosition.To2D(), W.Range + 15))
             {
-                pos = Player.ServerPosition.To2D() + Vector2.Normalize(pos - Player.ServerPosition.To2D())*600;
+                posStart = Player.ServerPosition.To2D() + Vector2.Normalize(pos - Player.ServerPosition.To2D())*600;
             }
 
             if(!W.IsReady() && W.ChargedSpellName == "")
                 return;
             foreach (Obj_AI_Base ally in ObjectManager.Get<Obj_AI_Base>().Where(ally => ally.IsAlly
-                && !(ally is Obj_AI_Turret) && inDistance(pos, ally.ServerPosition.To2D(), 200)))
+                && !(ally is Obj_AI_Turret) && inDistance(posStart, ally.ServerPosition.To2D(), 200)))
             {
                     wardIs = true;
-                moveTo(pos);
+                    moveTo(posStart);
                 if (inDistance(Player.ServerPosition.To2D(), ally.ServerPosition.To2D(), W.Range + ally.BoundingRadius))
                 {
                     W.Cast(ally);
@@ -384,25 +384,25 @@ namespace LeeSinSharp
                 return;
             }
             Polygon pol;
-            if ((pol = LeeSinSharp.map.getInWhichPolygon(pos)) != null)
+            if ((pol = LeeSinSharp.map.getInWhichPolygon(posStart)) != null)
             {
-                if (inDistance(pol.getProjOnPolygon(pos), Player.ServerPosition.To2D(), W.Range + 15) && !wardIs && inDistance(pol.getProjOnPolygon(pos), pos, 200))
+                if (inDistance(pol.getProjOnPolygon(posStart), Player.ServerPosition.To2D(), W.Range + 15) && !wardIs && inDistance(pol.getProjOnPolygon(posStart), posStart, 200))
                 {
                     if (lastwardjump < Environment.TickCount)
                     {
-                        putWard(pos);
+                        putWard(posStart);
                         lastwardjump = Environment.TickCount + 1000;
                     }
                 }
             }
             else if(!wardIs)
             {
-                if (lastwardjump < Environment.TickCount)
+               if (lastwardjump < Environment.TickCount)
                 {
-                    putWard(pos);
-                    lastwardjump = Environment.TickCount + 1000;
-                }
-            }
+                  putWard(posStart);
+                 lastwardjump = Environment.TickCount + 1000;
+              }
+           }
 
         }
 
@@ -413,7 +413,7 @@ namespace LeeSinSharp
             {
                 foreach (var slot in Player.InventoryItems.Where(slot => slot.Id == (ItemId)wardItem))
                 {
-                    ObjectManager.Player.Spellbook.CastSpell(slot.SpellSlot);
+                    Player.Spellbook.CastSpell(slot.SpellSlot, pos.To3D());
                     
                     return true;
                 }

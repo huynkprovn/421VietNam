@@ -47,12 +47,12 @@ namespace LeeSinSharp
             if (ObjectManager.Player.ChampionName != CharName) return;
             map = new Map();
 
-            Game.PrintChat("【HuyNK】- Pro LeeSin");
+            Game.PrintChat("^^HuyNK^^- Pro LeeSin");
 
             try
             {
 
-                Config = new Menu("LeeSin", "【HuyNK】-Pro LeeSin", true);
+                Config = new Menu("【HuyNK】-LeeSin", "【HuyNK】-Pro LeeSin", true);
                 var targetSelectorMenu = new Menu("Chọn đối tượng", "Target Selector");
                 LeagueSharp.Common.TargetSelector.AddToMenu(targetSelectorMenu);
                 Config.AddSubMenu(targetSelectorMenu);
